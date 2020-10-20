@@ -4,4 +4,4 @@
 
 ### `Ссылка на сайт`
 
-Нажмите на [Mesto-react](https://vitalii-grigorash.github.io/mesto-react/), что бы увидеть сайт в браузере.
+Нажмите на [News-explorer](https://vitalii-grigorash.github.io/mesto-react/), что бы увидеть сайт в браузере.
