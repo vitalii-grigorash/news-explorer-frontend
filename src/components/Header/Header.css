@@ -1,0 +1,87 @@
+.Header {
+    display: flex;
+    padding: 0 104px 0;
+    min-height: 80px;
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+.Header_black {
+    box-shadow: inset 0px -1px 0px #D1D2D6;
+}
+.Header__logo {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 auto 0 0;
+    align-self: center;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.Header__logo_black {
+    color: #1A1B22;    
+}
+.Header__link {
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color:#B6BCBF;
+    margin: 29px 34px 0 0;
+}
+.Header__link_active-white {
+    box-shadow: inset 0px -3px 0px;
+    color: #FFFFFF;
+}
+.Header__link:last-of-type {
+    margin-right: 0;
+}
+.Header__link:hover {
+    color: #FFFFFF;
+}
+.Header__link_black {
+    color: #D1D2D6;    
+}
+.Header__link_black:hover {
+    color: #1A1B22;    
+}
+.Header__link_active-black {
+    box-shadow: inset 0px -3px 0px;
+    color: #1A1B22;
+}
+.Header__auth-container {
+    display: flex;
+    padding: 12px;
+    align-self: center;
+    margin: 0 0 0 34px;
+    border: 1px solid #B6BCBF;
+    cursor: pointer;
+    border-radius: 100px;
+}
+.Header__auth-container:hover {
+    border: 1px solid #FFFFFF;    
+}
+.Header__auth-container_black {
+    border: 1px solid #D1D2D6;
+}
+.Header__auth-container_black:hover {
+    border: 1px solid #1A1B22;
+}
+.Header__logout-button {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin: 0;
+    align-self: center;
+}
+.Header__logout-button_black {
+    color: #1A1B22;
+}
+.Header__logout-icon {
+    margin: auto 0 auto 10px;
+}
