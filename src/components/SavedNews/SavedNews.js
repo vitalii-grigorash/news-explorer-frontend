@@ -4,9 +4,9 @@ function SavedNews() {
 
     return (
 
-        <header className="SavedNews">
+        <header className="saved-news">
 
-            <h1>SavedNews</h1>
+            <h1 className="saved-news__header">SavedNews</h1>
 
         </header>
     );

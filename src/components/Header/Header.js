@@ -5,7 +5,7 @@ import Navigation from '../Navigation/Navigation';
 function Header({ loggedIn, name, signOut, signIn }) {
 
     const { pathname } = useLocation();
-    const header = `${pathname === '/' ? `Header` : `Header Header_black`}`;
+    const header = `${pathname === '/' ? `header` : `header header_black`}`;
 
     return (
         <header className={header}>

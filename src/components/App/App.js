@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import Header from '../Header/Header';
@@ -7,8 +7,6 @@ import Footer from '../Footer/Footer';
 
 function App() {
 
-  const { pathname } = useLocation();
-  const app = `${pathname === '/' ? `App` : `App App_white-background`}`;
   const [loggedIn, setLoggedIn] = useState(false);
   const [name, setName] = useState('');
   const history = useHistory();
@@ -25,7 +23,7 @@ function App() {
   }
   
   return (
-    <div className={app}>
+    <div className="app">
 
       <Header 
         name={name}

@@ -1,5 +1,5 @@
-.App {
-  font-family: 'Inter', 'Roboto', 'Roboto Slab', 'Source Sans Pro', Arial, sans-serif;
+.app {
+  font-family: 'Inter', Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -7,11 +7,4 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   color: #000000;
-  background: url('../../images/main-background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  border: 1px solid red;
-}
-.App_white-background {
-  background: #FFFFFF;
 }
