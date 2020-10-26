@@ -1,14 +1,18 @@
 import React from 'react';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader'
+import NewsCardList from '../NewsCardList/NewsCardList';
 
-function SavedNews() {
+function SavedNews({ show, name }) {
 
     return (
-
-        <header className="saved-news">
-
-            <h1 className="saved-news__header">SavedNews</h1>
-
-        </header>
+        <>
+            <SavedNewsHeader
+                name={name}
+            />
+            <NewsCardList
+                show={show}
+            />
+        </> 
     );
 }
 

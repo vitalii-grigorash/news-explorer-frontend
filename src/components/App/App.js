@@ -8,8 +8,13 @@ import Footer from '../Footer/Footer';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const history = useHistory();
+
+  function handleShowResult() {
+    setShow(true);
+  }
 
   function handleSignOut() {
     setLoggedIn(false);
@@ -35,11 +40,17 @@ function App() {
         <Switch>
 
         <Route path='/saved-news'>
-          <SavedNews />
+          <SavedNews
+            name={name}
+            show={show}
+          />
         </Route>
 
         <Route path='/'>
-          <Main />
+          <Main
+            show={show}
+            showResult={handleShowResult}
+          />
         </Route>
 
         </Switch>

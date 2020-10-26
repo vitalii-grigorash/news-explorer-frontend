@@ -1,3 +1,34 @@
-.About {
-    
+.about {
+    display: flex;
+    padding-bottom: 80px;
+}
+.about__photo {
+    margin: 80px 56px 0 104px;
+    border-radius: 50%;
+    width: 464px;
+    height: 464px;
+    object-fit: cover;
+}
+.about__container {
+    display: flex;
+    flex-direction: column;
+    color: #1A1B22;
+    max-width: 600px;
+    margin: 131px auto auto 0;
+}
+.about__heading {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 46px;
+    margin: 0;
+}
+.about__description {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 24px 0 0 0;
 }

@@ -7,4 +7,5 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   color: #000000;
+  min-width: 300px;
 }
