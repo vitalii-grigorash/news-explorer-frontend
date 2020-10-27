@@ -1,3 +1,7 @@
+.navigation {
+    display: flex;
+    min-height: 80px;
+}
 .navigation__logo {
     font-family: 'Roboto Slab', Arial, sans-serif;
     font-style: normal;

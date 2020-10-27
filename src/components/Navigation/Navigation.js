@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import logoutIconWhite from '../../images/svg/logout-icon-white.svg';
 import logoutIconBlack from '../../images/svg/logout-icon-black.svg';
 
-function Navigation({ loggedIn, name, signOut, signIn }) {
+function Navigation({ loggedIn, name, signOut, onAuthClick }) {
 
     const { pathname } = useLocation();
     const authButtonText = `${loggedIn ? `${name}` : 'Авторизоваться'}`;
@@ -16,7 +16,7 @@ function Navigation({ loggedIn, name, signOut, signIn }) {
     const navigationAuthContainer = `${pathname === '/' ? `navigation__auth-container` : `navigation__auth-container navigation__auth-container_black`}`;
 
     return (
-        <>
+        <nav className="navigation">
             <Link to={'/'} className={navigationLogo}>NewsExplorer</Link>
             <Link to={'/'} className={`${navigationLink} ${mainUnderlineActive}`}>Главная</Link>
             {loggedIn && (
@@ -24,7 +24,7 @@ function Navigation({ loggedIn, name, signOut, signIn }) {
                     <Link to={'/saved-news'} className={`${navigationLink} ${newsUnderlineActive}`}>Сохранённые статьи</Link>
                 </>
             )}
-            <div className={navigationAuthContainer} onClick={loggedIn ? signOut : signIn}>
+            <div className={navigationAuthContainer} onClick={loggedIn ? signOut : onAuthClick}>
                 <p className={navigationLogoutButton}>{authButtonText}</p>
                 {loggedIn && (
                     <>
@@ -32,7 +32,7 @@ function Navigation({ loggedIn, name, signOut, signIn }) {
                     </>
                 )}
             </div>
-        </>
+        </nav>
     );
 }
 

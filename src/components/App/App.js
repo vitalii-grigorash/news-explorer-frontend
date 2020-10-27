@@ -1,16 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
+import LoginPopup from '../LoginPopup/LoginPopup';
+import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
+  const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const history = useHistory();
+
+  const memoizedOnKeyup = useCallback(handleEscClose, []);
+
+  function handleEscClose (evt) {
+    if (evt.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  function handleChangePopup (evt) { 
+    if ((evt.target).textContent === 'Зарегистрироваться') { 
+      closeAllPopups();
+      handleRegisterPopupClick();
+    } else {
+      closeAllPopups();
+      handleLoginPopupClick();
+    }
+  }
+
+  function handleLoginPopupClick() {
+    setLoginPopupOpen(true);
+    document.addEventListener('keyup', memoizedOnKeyup);
+  }
+
+  function handleRegisterPopupClick() {
+    setRegisterPopupOpen(true);
+    document.addEventListener('keyup', memoizedOnKeyup);
+  }
 
   function handleShowResult() {
     setShow(true);
@@ -24,7 +56,16 @@ function App() {
 
   function handleSignIn() {
     setLoggedIn(true);
-    setName('Виталий');
+  }
+
+  function registerForm (name) {
+    setName(name);
+  }
+
+  function closeAllPopups() {
+    setLoginPopupOpen(false);
+    setRegisterPopupOpen(false);
+    document.removeEventListener('keyup', memoizedOnKeyup);
   }
   
   return (
@@ -34,7 +75,7 @@ function App() {
         name={name}
         loggedIn={loggedIn}
         signOut={handleSignOut}
-        signIn={handleSignIn}
+        onAuthClick={handleLoginPopupClick}
       />
 
         <Switch>
@@ -56,6 +97,20 @@ function App() {
         </Switch>
 
         <Footer />
+
+        <LoginPopup
+          isOpen={isLoginPopupOpen}
+          onClose={closeAllPopups}
+          signIn={handleSignIn}
+          onChangePopup={handleChangePopup}
+        />
+
+        <RegisterPopup
+          isOpen={isRegisterPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUserName={registerForm}
+          onChangePopup={handleChangePopup}
+        />
 
     </div>
   );
