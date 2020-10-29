@@ -30,5 +30,41 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 24px;
-    margin: 24px 0 0 0;
+    margin: 24px 0 0;
+}
+@media screen and (max-width: 768px) {
+    .about {
+        padding-bottom: 61px;
+    }
+    .about__photo {
+        margin: 61px 32px 0 40px;
+        width: 232px;
+        height: 232px;
+    }
+    .about__container {
+        max-width: 424px;
+        margin: 40px auto auto 0;
+    }
+    .about__heading {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .about__description {
+        margin: 16px 0 0;
+    }
+}
+@media screen and (max-width: 320px) {
+    .about {
+        flex-direction: column;
+        padding-bottom: 80px;
+    }
+    .about__photo {
+        margin: 32px 24px 0;
+        width: 272px;
+        height: 272px;
+    }
+    .about__container {
+        max-width: 288px;
+        margin: 24px auto auto;
+    }
 }

@@ -3,21 +3,21 @@ import { Link, useLocation } from 'react-router-dom';
 import logoutIconWhite from '../../images/svg/logout-icon-white.svg';
 import logoutIconBlack from '../../images/svg/logout-icon-black.svg';
 
-function Navigation({ loggedIn, name, signOut, onAuthClick }) {
+function Navigation({ loggedIn, name, signOut, onAuthClick, isMobileOpen }) {
 
     const { pathname } = useLocation();
     const authButtonText = `${loggedIn ? `${name}` : 'Авторизоваться'}`;
-    const logoutIcon = `${pathname === '/' ? logoutIconWhite : logoutIconBlack}`;
+    const logoutIconChange = `${pathname === '/' ? logoutIconWhite : logoutIconBlack}`;
+    const logoutIcon = `${isMobileOpen ? logoutIconWhite : logoutIconChange}`;
     const mainUnderlineActive = `${pathname === '/' && `navigation__link_active-white`}`;
     const newsUnderlineActive = `${pathname === '/saved-news' && `navigation__link_active-black`}`;
     const navigationLink = `${pathname === '/' ? `navigation__link` : `navigation__link navigation__link_black`}`;
-    const navigationLogo = `${pathname === '/' ? `navigation__logo` : `navigation__logo navigation__logo_black`}`;
     const navigationLogoutButton = `${pathname === '/' ? `navigation__logout-button` : `navigation__logout-button navigation__logout-button_black`}`;
     const navigationAuthContainer = `${pathname === '/' ? `navigation__auth-container` : `navigation__auth-container navigation__auth-container_black`}`;
+    const navigation = `${isMobileOpen ? `navigation-mobile` : `navigation`}`
 
     return (
-        <nav className="navigation">
-            <Link to={'/'} className={navigationLogo}>NewsExplorer</Link>
+        <nav className={navigation}>
             <Link to={'/'} className={`${navigationLink} ${mainUnderlineActive}`}>Главная</Link>
             {loggedIn && (
                 <>

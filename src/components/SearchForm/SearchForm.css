@@ -44,3 +44,28 @@
 .search-form__search-button:focus {
     outline: none;    
 }
+@media screen and (max-width: 768px) {
+    .search-form {
+        min-height: 56px;
+        margin: 48px 0 0 0;
+    }
+}
+@media screen and (max-width: 320px) {
+    .search-form {
+        flex-direction: column;
+        background-color: transparent;
+        margin: 122px 0 0 0;
+        border-radius: 0;
+    }
+    .search-form__input {
+        border-radius: 100px;
+        min-height: 56px;
+        width: 270px;
+        margin: 0;
+        padding-left: 16px;
+    }
+    .search-form__search-button {
+        min-height: 56px;
+        margin-top: 16px;
+    }
+}

@@ -5,10 +5,9 @@ function SearchForm({ showResult }) {
     function handleSubmit(e) {
         e.preventDefault();
         showResult();
-      }
+    }
 
     return (
-
         <form 
             className="search-form"
             onSubmit={handleSubmit}

@@ -73,7 +73,7 @@
     background: #2F71E5;
     outline: none;
     border-radius: 100px;
-    margin: 0 0 16px;
+    margin: 0;
 }
 .popup-with-form__submit-button:hover {
     opacity: .6;
@@ -119,11 +119,38 @@
     font-size: 14px;
     line-height: 17px;
     color: #000000;
-    margin: 0 auto 0;
+    margin: 16px auto 0;
 }
 .popup-with-form__change-form_link {
     color: #2F71E5;
+    margin: -11px auto 6px 0;
 }
 .popup-with-form__change-form_link:hover {
     cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+    .popup-with-form__close-button {
+        display: none;
+    }
+}
+@media screen and (max-width: 320px) {
+    .popup-with-form {
+        background-color: transparent;
+    }
+    .popup-with-form__container {
+        margin: 56px 0 0;
+        position: relative;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 16px 16px 0;
+    }
+    .popup-with-form__forms {
+        max-width: 288px;
+    }
+    .popup-with-form__heading {
+        margin: 0 auto 22px 0;
+    }
+    .popup-with-form__submit-button-error {
+        margin: 0 auto 1px;
+    }
 }

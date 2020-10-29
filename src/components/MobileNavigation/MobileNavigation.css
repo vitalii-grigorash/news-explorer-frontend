@@ -1,0 +1,28 @@
+.mobile-navigation {
+    display: none;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0, 0, 0, .5);
+}
+.mobile-navigation_opened {
+    visibility: visible;
+    opacity: 1;
+}
+.mobile-navigation__container {
+    width: 100%;
+    margin: 0 0 auto;
+    background-color: #1A1B22;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    padding: 0 0 24px;
+}
+@media screen and (max-width: 320px) {
+    .mobile-navigation {
+        display: flex;
+    }
+}

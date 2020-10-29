@@ -4,7 +4,9 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
+import RegisterSuccessPopup from '../RegisterSuccessPopup/RegisterSuccessPopup';
 import Header from '../Header/Header';
+import MobileNavigation from '../MobileNavigation/MobileNavigation'
 import Footer from '../Footer/Footer';
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
+  const [isRegisterSuccessPopupOpen, setRegisterSuccessPopupOpen] = useState(false);
+  const [isMobileNavigationOpen, setMobileNavigationOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [name, setName] = useState('');
   const history = useHistory();
@@ -34,13 +38,25 @@ function App() {
     }
   }
 
+  function handleMobileNavigationClick() {
+    setMobileNavigationOpen(true);
+  }
+
   function handleLoginPopupClick() {
     setLoginPopupOpen(true);
+    if (isMobileNavigationOpen) {
+      setMobileNavigationOpen(false);
+    }
     document.addEventListener('keyup', memoizedOnKeyup);
   }
 
   function handleRegisterPopupClick() {
     setRegisterPopupOpen(true);
+    document.addEventListener('keyup', memoizedOnKeyup);
+  }
+
+  function handleRegisterSuccessPopupClick() {
+    setRegisterSuccessPopupOpen(true);
     document.addEventListener('keyup', memoizedOnKeyup);
   }
 
@@ -65,6 +81,8 @@ function App() {
   function closeAllPopups() {
     setLoginPopupOpen(false);
     setRegisterPopupOpen(false);
+    setRegisterSuccessPopupOpen(false);
+    setMobileNavigationOpen(false);
     document.removeEventListener('keyup', memoizedOnKeyup);
   }
   
@@ -72,10 +90,14 @@ function App() {
     <div className="app">
 
       <Header 
+        isLogin={isLoginPopupOpen}
+        isRegister={isRegisterPopupOpen}
+        isSuccess={isRegisterSuccessPopupOpen}
         name={name}
         loggedIn={loggedIn}
         signOut={handleSignOut}
         onAuthClick={handleLoginPopupClick}
+        onBurgerButtonClick={handleMobileNavigationClick}
       />
 
         <Switch>
@@ -110,6 +132,22 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUserName={registerForm}
           onChangePopup={handleChangePopup}
+          onRegisterSuccessPopup={handleRegisterSuccessPopupClick}
+        />
+
+        <RegisterSuccessPopup
+          isOpen={isRegisterSuccessPopupOpen}
+          onClose={closeAllPopups}
+          onChangePopup={handleChangePopup}
+        />
+
+        <MobileNavigation
+          isOpen={isMobileNavigationOpen}
+          onClose={closeAllPopups}
+          name={name}
+          loggedIn={loggedIn}
+          signOut={handleSignOut}
+          onAuthClick={handleLoginPopupClick}
         />
 
     </div>

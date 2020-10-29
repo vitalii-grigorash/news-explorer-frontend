@@ -3,7 +3,13 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function RegisterPopup(props) {
 
-    const { isOpen, onClose, onChangePopup, onUpdateUserName } = props;
+    const { 
+        isOpen, 
+        onClose, 
+        onChangePopup, 
+        onUpdateUserName,
+        onRegisterSuccessPopup, 
+        } = props;
 
     const [name, setName] = useState('');
 
@@ -15,6 +21,7 @@ function RegisterPopup(props) {
         e.preventDefault();
         onUpdateUserName(name);
         onClose();
+        onRegisterSuccessPopup();
     }
 
     return (

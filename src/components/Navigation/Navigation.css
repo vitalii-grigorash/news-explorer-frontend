@@ -2,19 +2,11 @@
     display: flex;
     min-height: 80px;
 }
-.navigation__logo {
-    font-family: 'Roboto Slab', Arial, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 24px;
-    margin: 0 auto 0 0;
-    align-self: center;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-.navigation__logo_black {
-    color: #1A1B22;    
+.navigation-mobile {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 16px 16px 0;
 }
 .navigation__link {
     text-decoration: none;
@@ -79,4 +71,66 @@
 }
 .navigation__logout-icon {
     margin: auto 0 auto 10px;
+}
+@media screen and (max-width: 768px) {
+    .navigation {
+        min-height: 66px;
+    }
+    .navigation__link {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 22px 16px 0 0;
+    }
+    .navigation__auth-container {
+        padding: 8px;
+        margin: 0 0 0 16px;
+    }
+    .navigation__logout-button {
+        font-size: 16px;
+    }
+    .navigation__logout-icon {
+        margin: auto 0 auto 8px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .navigation {
+        display: none;
+    }
+    .navigation-mobile {
+        display: flex;
+    }
+    .navigation__link {
+        font-size: 18px;
+        line-height: 56px;
+        color: #FFFFFF;
+        margin: 0;
+    }
+    .navigation__link_active-white {
+        box-shadow: none;
+    }
+    .navigation__link_active-black {
+        box-shadow: none;
+        color: #FFFFFF;
+    }
+    .navigation__link_black:hover {
+        color: #FFFFFF;  
+    }
+    .navigation__auth-container {
+        width: 100%;
+        padding: 15px 0;
+        margin: 22px 0 0;
+        justify-content: center;
+    }
+    .navigation__logout-button {
+        font-size: 18px;
+    }
+    .navigation__logout-icon {
+        margin: 0 0 0 10px;
+    }
+    .navigation__auth-container_black:hover {
+        border: 1px solid #FFFFFF;
+    }
+    .navigation__logout-button_black {
+        color: #FFFFFF;  
+    }
 }

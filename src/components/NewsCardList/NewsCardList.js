@@ -11,7 +11,7 @@ function NewsCardList({ show }) {
     return (
         <>
             {show && 
-                (
+                (   
                     <div className="news-card-list">
                         {/* <Preloader /> */}
                         {/* <NoResult /> */}
