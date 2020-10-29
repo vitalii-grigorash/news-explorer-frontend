@@ -1,33 +1,33 @@
 {
   "files": {
-    "main.css": "./static/css/main.df8b4292.chunk.css",
-    "main.js": "./static/js/main.46c2c11c.chunk.js",
-    "main.js.map": "./static/js/main.46c2c11c.chunk.js.map",
+    "main.css": "./static/css/main.c89556d9.chunk.css",
+    "main.js": "./static/js/main.bdaa19b6.chunk.js",
+    "main.js.map": "./static/js/main.bdaa19b6.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.3199ff88.js",
     "runtime-main.js.map": "./static/js/runtime-main.3199ff88.js.map",
     "static/js/2.2221d236.chunk.js": "./static/js/2.2221d236.chunk.js",
     "static/js/2.2221d236.chunk.js.map": "./static/js/2.2221d236.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.205076e37d7d3bec1f112263c9b2bafb.js": "./precache-manifest.205076e37d7d3bec1f112263c9b2bafb.js",
+    "precache-manifest.ab074c1783ef6f69d86852cf03e21210.js": "./precache-manifest.ab074c1783ef6f69d86852cf03e21210.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/main.df8b4292.chunk.css.map": "./static/css/main.df8b4292.chunk.css.map",
+    "static/css/main.c89556d9.chunk.css.map": "./static/css/main.c89556d9.chunk.css.map",
     "static/js/2.2221d236.chunk.js.LICENSE.txt": "./static/js/2.2221d236.chunk.js.LICENSE.txt",
-    "static/media/index.css": "./static/media/trash-button.48c814ff.svg",
-    "static/media/burger-menu-button-black.svg": "./static/media/burger-menu-button-black.b75f51a7.svg",
-    "static/media/burger-menu-button.svg": "./static/media/burger-menu-button.48e1c7c5.svg",
-    "static/media/facebook-icon.svg": "./static/media/facebook-icon.ea9ff168.svg",
-    "static/media/github-icon.svg": "./static/media/github-icon.e9c37b7e.svg",
-    "static/media/image-for-card.jpg": "./static/media/image-for-card.9b4d46f1.jpg",
-    "static/media/logout-icon-black.svg": "./static/media/logout-icon-black.ea7e4836.svg",
-    "static/media/logout-icon-white.svg": "./static/media/logout-icon-white.2982f1b3.svg",
-    "static/media/main-background.jpg": "./static/media/main-background.61294bc3.jpg",
-    "static/media/mobile-button-close.svg": "./static/media/mobile-button-close.9afc0ede.svg",
-    "static/media/my-photo.jpg": "./static/media/my-photo.e138aa4b.jpg"
+    "static/media/index.css": "./static/media/trash-button.5cfec10d.svg",
+    "static/media/burger-menu-button-black.svg": "./static/media/burger-menu-button-black.71673db7.svg",
+    "static/media/burger-menu-button.svg": "./static/media/burger-menu-button.584262ec.svg",
+    "static/media/facebook-icon.svg": "./static/media/facebook-icon.4b12ed39.svg",
+    "static/media/github-icon.svg": "./static/media/github-icon.a432c326.svg",
+    "static/media/image-for-card.jpg": "./static/media/image-for-card.f9c3035f.jpg",
+    "static/media/logout-icon-black.svg": "./static/media/logout-icon-black.a9113294.svg",
+    "static/media/logout-icon-white.svg": "./static/media/logout-icon-white.3c57fa38.svg",
+    "static/media/main-background.jpg": "./static/media/main-background.68e687e3.jpg",
+    "static/media/mobile-button-close.svg": "./static/media/mobile-button-close.b4d99d68.svg",
+    "static/media/my-photo.jpg": "./static/media/my-photo.911cdaa3.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.3199ff88.js",
     "static/js/2.2221d236.chunk.js",
-    "static/css/main.df8b4292.chunk.css",
-    "static/js/main.46c2c11c.chunk.js"
+    "static/css/main.c89556d9.chunk.css",
+    "static/js/main.bdaa19b6.chunk.js"
   ]
 }
