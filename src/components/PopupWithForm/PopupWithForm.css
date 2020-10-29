@@ -133,16 +133,19 @@
         display: none;
     }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
+    .popup-with-form__forms {
+        max-width: 300px;
+    }
+}
+@media screen and (max-width: 390px) {
     .popup-with-form {
         background-color: transparent;
     }
     .popup-with-form__container {
-        margin: 56px 0 0;
+        margin: 56px auto auto;
         position: relative;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-        padding: 16px 16px 0;
+        padding: 16px 16px 16px;
     }
     .popup-with-form__forms {
         max-width: 288px;
@@ -152,5 +155,13 @@
     }
     .popup-with-form__submit-button-error {
         margin: 0 auto 1px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .popup-with-form__container {
+        margin: 56px 0 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 16px 16px 0;
     }
 }

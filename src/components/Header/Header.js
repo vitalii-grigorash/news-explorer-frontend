@@ -23,14 +23,14 @@ function Header(props) {
     const headerChange = `${pathname === '/' ? `header` : `header header_black`}`;
     const header = `${isMobileOpen ? `header` : headerChange}`;
     const logo = `${pathname === '/' ? `header__logo` : `header__logo header__logo_black`}`;
-    const navigationLogo = `${isMobileOpen ? `header__logo` : logo}`;
+    const headerLogo = `${isMobileOpen ? `header__logo` : logo}`;
     const burgerMenuButton = `${pathname === '/' ? burgerMenuButtonWhite : burgerMenuButtonBlack }`;
     const changeButton = `${isMobileOpen ? mobileButtonClose : burgerMenuButton}`;
     const button = `${isLogin || isRegister || isSuccess ? mobileButtonClose : changeButton}`;
 
     return (
         <header className={header}>
-            <Link to={'/'} className={navigationLogo}>NewsExplorer</Link>
+            <Link to={'/'} className={headerLogo}>NewsExplorer</Link>
             <Navigation
                 name={name}
                 loggedIn={loggedIn}

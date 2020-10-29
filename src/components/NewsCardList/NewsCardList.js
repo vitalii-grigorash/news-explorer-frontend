@@ -13,8 +13,8 @@ function NewsCardList({ show }) {
             {show && 
                 (   
                     <div className="news-card-list">
-                        {/* <Preloader /> */}
-                        {/* <NoResult /> */}
+                        {/* <Preloader />
+                        <NoResult /> */}
                         {pathname === '/' && 
                             (
                                 <h2 className="news-card-list__header">Результаты поиска</h2>
