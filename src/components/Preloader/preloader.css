@@ -30,6 +30,7 @@
 	color: #B6BCBF;
 	margin: 24px 0 0;
 }
+
 @keyframes spin {
 	100% {
 		transform: rotate(360deg);
