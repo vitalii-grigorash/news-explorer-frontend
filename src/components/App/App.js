@@ -16,7 +16,7 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isRegisterSuccessPopupOpen, setRegisterSuccessPopupOpen] = useState(false);
   const [isMobileNavigationOpen, setMobileNavigationOpen] = useState(false);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [name, setName] = useState('');
   const history = useHistory();
 

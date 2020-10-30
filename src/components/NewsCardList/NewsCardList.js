@@ -1,7 +1,7 @@
 import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
-// import Preloader from '../Preloader/Preloader';
-// import NoResult from '../NoResult/NoResult';
+import Preloader from '../Preloader/Preloader';
+import NoResult from '../NoResult/NoResult';
 import { useLocation } from 'react-router-dom';
 
 function NewsCardList({ show }) {
@@ -13,8 +13,8 @@ function NewsCardList({ show }) {
             {show && 
                 (   
                     <div className="news-card-list">
-                        {/* <Preloader />
-                        <NoResult /> */}
+                        <Preloader />
+                        <NoResult />
                         {pathname === '/' && 
                             (
                                 <h2 className="news-card-list__header">Результаты поиска</h2>
