@@ -17,7 +17,7 @@ function App() {
   const [isRegisterSuccessPopupOpen, setRegisterSuccessPopupOpen] = useState(false);
   const [isMobileNavigationOpen, setMobileNavigationOpen] = useState(false);
   const [show, setShow] = useState(true);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('Грета');
   const history = useHistory();
 
   const memoizedOnKeyup = useCallback(handleEscClose, []);
@@ -66,7 +66,6 @@ function App() {
 
   function handleSignOut() {
     setLoggedIn(false);
-    setName('');
     history.push('/');
   }
 

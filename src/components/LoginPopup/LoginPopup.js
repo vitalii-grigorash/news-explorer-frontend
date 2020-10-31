@@ -28,27 +28,27 @@ function LoginPopup (props) {
             <input
             type="email"
             className="popup-with-form__input popup-with-form__input_email"
-            id="email-input"
+            id="login-email-input"
             name="email"
             placeholder='Введите почту'
             minLength="2"
             maxLength="30"
             required
             />
-            <span id="email-input-error" className="popup-with-form__input_error"></span>
+            <span id="login-email-input-error" className="popup-with-form__input_error"></span>
         
             <span className="popup-with-form__input_heading">Пароль</span>
             <input
             type="password"
             className="popup-with-form__input popup-with-form__input_pasword"
-            id="password-input"
+            id="login-password-input"
             name="password"
             placeholder='Введите пароль'
             minLength="2"
             maxLength="30"
             required
             />
-            <span id="password-input-error" className="popup-with-form__input_error"></span>
+            <span id="login-password-input-error" className="popup-with-form__input_error"></span>
         
         </PopupWithForm>
     )

@@ -63,7 +63,7 @@
         margin: 16px 15px 0;
     }
 }
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 450px) {
     .main__background {
         top: -96px;
         max-height: 538px;

@@ -40,33 +40,33 @@ function RegisterPopup(props) {
             <input
                 type="email"
                 className="popup-with-form__input popup-with-form__input_email"
-                id="email-input"
+                id="register-email-input"
                 name="email"
                 placeholder='Введите почту'
                 minLength="2"
                 maxLength="30"
                 required
             />
-            <span id="email-input-error" className="popup-with-form__input_error"></span>
+            <span id="register-email-input-error" className="popup-with-form__input_error"></span>
 
             <span className="popup-with-form__input_heading">Пароль</span>
             <input
                 type="password"
                 className="popup-with-form__input popup-with-form__input_pasword"
-                id="password-input"
+                id="register-password-input"
                 name="password"
                 placeholder='Введите пароль'
                 minLength="2"
                 maxLength="30"
                 required
             />
-            <span id="password-input-error" className="popup-with-form__input_error"></span>
+            <span id="register-password-input-error" className="popup-with-form__input_error"></span>
 
             <span className="popup-with-form__input_heading">Имя</span>
             <input
                 type="text"
                 className="popup-with-form__input popup-with-form__input_name"
-                id="name-input"
+                id="register-name-input"
                 name="name"
                 placeholder='Введите своё имя'
                 minLength="2"
@@ -75,7 +75,7 @@ function RegisterPopup(props) {
                 required
                 onChange={handleNameChange}
             />
-            <span id="name-input-error" className="popup-with-form__input_error"></span>
+            <span id="register-name-input-error" className="popup-with-form__input_error"></span>
 
         </PopupWithForm>
     )
