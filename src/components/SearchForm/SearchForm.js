@@ -16,6 +16,7 @@ function SearchForm({ showResult }) {
                 className="search-form__input"
                 type="text" 
                 placeholder='Введите тему новости'
+                required
             />
             <button type="submit" className="search-form__search-button">Искать</button>
         </form>
