@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "./static/css/main.4bfe7d65.chunk.css",
-    "main.js": "./static/js/main.03fbe7af.chunk.js",
-    "main.js.map": "./static/js/main.03fbe7af.chunk.js.map",
+    "main.css": "./static/css/main.0be882e8.chunk.css",
+    "main.js": "./static/js/main.825315da.chunk.js",
+    "main.js.map": "./static/js/main.825315da.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.3199ff88.js",
     "runtime-main.js.map": "./static/js/runtime-main.3199ff88.js.map",
-    "static/js/2.dbb486f7.chunk.js": "./static/js/2.dbb486f7.chunk.js",
-    "static/js/2.dbb486f7.chunk.js.map": "./static/js/2.dbb486f7.chunk.js.map",
+    "static/js/2.f26de6d5.chunk.js": "./static/js/2.f26de6d5.chunk.js",
+    "static/js/2.f26de6d5.chunk.js.map": "./static/js/2.f26de6d5.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.aa90e6ed24ddf09f9ca5bf12b70c2f48.js": "./precache-manifest.aa90e6ed24ddf09f9ca5bf12b70c2f48.js",
+    "precache-manifest.f909c7ea247cbd93446e705ba447adea.js": "./precache-manifest.f909c7ea247cbd93446e705ba447adea.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/main.4bfe7d65.chunk.css.map": "./static/css/main.4bfe7d65.chunk.css.map",
-    "static/js/2.dbb486f7.chunk.js.LICENSE.txt": "./static/js/2.dbb486f7.chunk.js.LICENSE.txt",
+    "static/css/main.0be882e8.chunk.css.map": "./static/css/main.0be882e8.chunk.css.map",
+    "static/js/2.f26de6d5.chunk.js.LICENSE.txt": "./static/js/2.f26de6d5.chunk.js.LICENSE.txt",
     "static/media/index.css": "./static/media/trash-button.5cfec10d.svg",
     "static/media/burger-menu-button-black.svg": "./static/media/burger-menu-button-black.71673db7.svg",
     "static/media/burger-menu-button.svg": "./static/media/burger-menu-button.584262ec.svg",
     "static/media/facebook-icon.svg": "./static/media/facebook-icon.4b12ed39.svg",
     "static/media/github-icon.svg": "./static/media/github-icon.a432c326.svg",
-    "static/media/image-for-card.jpg": "./static/media/image-for-card.f9c3035f.jpg",
     "static/media/logout-icon-black.svg": "./static/media/logout-icon-black.a9113294.svg",
     "static/media/logout-icon-white.svg": "./static/media/logout-icon-white.3c57fa38.svg",
     "static/media/main-background.jpg": "./static/media/main-background.68e687e3.jpg",
@@ -27,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.3199ff88.js",
-    "static/js/2.dbb486f7.chunk.js",
-    "static/css/main.4bfe7d65.chunk.css",
-    "static/js/main.03fbe7af.chunk.js"
+    "static/js/2.f26de6d5.chunk.js",
+    "static/css/main.0be882e8.chunk.css",
+    "static/js/main.825315da.chunk.js"
   ]
 }
