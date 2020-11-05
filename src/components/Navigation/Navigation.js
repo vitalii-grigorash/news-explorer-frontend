@@ -2,11 +2,14 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoutIconWhite from '../../images/svg/logout-icon-white.svg';
 import logoutIconBlack from '../../images/svg/logout-icon-black.svg';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Navigation({ loggedIn, name, signOut, onAuthClick, isMobileOpen }) {
+function Navigation({ loggedIn, signOut, onAuthClick, isMobileOpen }) {
+
+    const currentUser = React.useContext(CurrentUserContext);
 
     const { pathname } = useLocation();
-    const authButtonText = `${loggedIn ? `${name}` : 'Авторизоваться'}`;
+    const authButtonText = `${loggedIn ? `${currentUser.name}` : 'Авторизоваться'}`;
     const logoutIconChange = `${pathname === '/' ? logoutIconWhite : logoutIconBlack}`;
     const logoutIcon = `${isMobileOpen ? logoutIconWhite : logoutIconChange}`;
     const mainUnderlineActive = `${pathname === '/' && `navigation__link_active-white`}`;

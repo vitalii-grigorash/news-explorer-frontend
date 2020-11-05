@@ -14,6 +14,11 @@ function PopupWithForm(props) {
         isSuccessPopup,
     } = props;
 
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        onSubmit();
+    }
+
     function handleOverlayClose(evt) {
         if ((evt.target).classList.contains('popup-with-form_opened')) {
             onClose();
@@ -35,7 +40,7 @@ function PopupWithForm(props) {
                 ></button>
                 <form
                     className="popup-with-form__forms"
-                    onSubmit={onSubmit}
+                    onSubmit={handleSubmit}
                 >
                     <h2 className="popup-with-form__heading">{title}</h2>
                     {children}

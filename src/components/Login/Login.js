@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
-function LoginPopup (props) {
+function Login (props) {
 
-    const { isOpen, onClose, onChangePopup, signIn } = props;
+    const { 
+        isOpen, 
+        onClose, 
+        onChangePopup,
+        onLogin,
+    } = props;
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        signIn();
-        onClose();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleEmailChange(evt) {
+        setEmail(evt.target.value);
+    }
+
+    function handlePasswordChange(evt) {
+        setPassword(evt.target.value);
+    }
+
+    function submitForm() {
+        if (!email && !password) return;
+        onLogin(email, password);
+        setEmail('');
+        setPassword('');
     }
 
     return (
@@ -19,7 +36,7 @@ function LoginPopup (props) {
             submitButtonText='Войти'
             isOpen={isOpen}
             onClose={onClose}
-            onSubmit={handleSubmit}
+            onSubmit={submitForm}
             changeFormText='Зарегистрироваться'
             onChangePopup={onChangePopup}
         >
@@ -34,6 +51,8 @@ function LoginPopup (props) {
             minLength="2"
             maxLength="30"
             required
+            value={email}
+            onChange={handleEmailChange}
             />
             <span id="login-email-input-error" className="popup-with-form__input_error"></span>
         
@@ -47,6 +66,8 @@ function LoginPopup (props) {
             minLength="2"
             maxLength="30"
             required
+            value={password}
+            onChange={handlePasswordChange}
             />
             <span id="login-password-input-error" className="popup-with-form__input_error"></span>
         
@@ -55,4 +76,4 @@ function LoginPopup (props) {
 
 }
 
-export default LoginPopup;
+export default Login;

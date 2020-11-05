@@ -14,7 +14,7 @@
 @import url(./components/SavedNews/SavedNews.css);
 @import url(./components/SavedNewsHeader/SavedNewsHeader.css);
 @import url(./components/SearchForm/SearchForm.css);
-@import url(./components/LoginPopup/LoginPopup.css);
-@import url(./components/RegisterPopup/RegisterPopup.css);
+@import url(./components/Login/Login.css);
+@import url(./components/Register/Register.css);
 @import url(./components/RegisterSuccessPopup/RegisterSuccessPopup.css);
 @import url(./components/MobileNavigation/MobileNavigation.css);
