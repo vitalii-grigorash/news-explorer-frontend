@@ -1,4 +1,0 @@
-[1109/093327.024:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
-[1110/092143.228:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
-[1110/092143.676:ERROR:exception_snapshot_win.cc(99)] thread ID 5208 not found in process
-[1110/103922.533:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
