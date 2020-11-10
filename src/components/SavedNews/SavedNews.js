@@ -15,7 +15,10 @@ function SavedNews(props) {
 
     return (
         <>
-            <SavedNewsHeader/>
+            <SavedNewsHeader
+                card={card}
+                loggedIn={loggedIn}
+            />
             
             <NewsCardList
                 isNewsCard={false}

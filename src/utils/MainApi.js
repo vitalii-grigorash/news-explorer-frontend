@@ -19,6 +19,9 @@ export const register = (email, password, name) => fetch(`${BASE_URL}/signup`, {
         });
     }
     return res.json();
+  })
+  .catch((err) => { 
+    throw new Error(err.message);
   });
 
   export const authorize = (email, password) => {
@@ -95,6 +98,27 @@ export const register = (email, password, name) => fetch(`${BASE_URL}/signup`, {
       throw new Error(err.message);
     }); 
   };
+
+  export const removeCard = (cardId, token) => {
+    return fetch(`${BASE_URL}/articles/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((card) => {
+      return card;
+    })
+    .catch((err) => { 
+      throw new Error(err.message);
+    });
+  }
 
   export const getCards = (token) => {
     return fetch(`${BASE_URL}/articles`, {

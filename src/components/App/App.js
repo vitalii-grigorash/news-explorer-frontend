@@ -27,43 +27,45 @@ function App() {
   const [isMobileNavigationOpen, setMobileNavigationOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isNoResult, setNoResult] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showSearchNews, setShowSearchNews] = useState(false);
+  const [showSavedNews, setShowSavedNews] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [authError, setAuthError] = useState('');
+  const [searchError, setsearchError] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const history = useHistory();
   const { pathname } = useLocation();
 
-  const memoizedOnKeyup = useCallback(handleEscClose, []);
-
-  function handleEscClose (evt) {
-    if (evt.key === 'Escape') {
-      closeAllPopups();
-    }
-  }
-
-  function handleCardAdd (cardData) {
-    const jwt = localStorage.getItem('jwt');
-    MainApi.addCard(cardData, jwt)
-    .then((res) => {
-      setCard([...card, res]);
-      console.log(cardData);
+  function getCards (token) {
+    MainApi.getCards(token)
+    .then((cardData) => {
+      setCard(cardData);
+      if (cardData.length === 0) {
+        setShowSavedNews(false);
+      } else {
+        setShowSavedNews(true);
+      }
     })
-    .catch((err) => console.log(`Ошибка: ${err}`))
-  }
-
-  function handleCardDelete (evt) {
-    console.log('Removed')  
+    .catch((err) => console.log(`Ошибка при загрузке карточек: ${err}`));
   }
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (pathname === '/saved-news') {
-      MainApi
-      .getCards(jwt)
-      .then((cardData) => {
-        setCard(cardData);
-      })
-      .catch((err) => console.log(`Ошибка при загрузке карточек: ${err}`));
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      getCards(jwt);
     }
   }, [pathname]);
+
+  React.useEffect(() => {
+    if (localStorage.getItem('searchNews')) {
+      const searchNews = localStorage.getItem('searchNews');
+      const newNews = JSON.parse(searchNews);
+      const newKeyword = localStorage.getItem('keyword');
+      setNews(newNews);
+      setShowSearchNews(true);
+      setSearchKeyword(newKeyword);
+    }
+  },[]);
 
   React.useEffect(() => {
     if (localStorage.getItem('jwt')) {
@@ -78,16 +80,63 @@ function App() {
     }
   }, [history]);
 
+  React.useEffect(() => {
+    if (!loggedIn && pathname === '/saved-news') {
+      handleLoginPopupClick(); 
+    }
+  });
+
+  const memoizedOnKeyup = useCallback(handleEscClose, []);
+
+  function handleEscClose (evt) {
+    if (evt.key === 'Escape') {
+      closeAllPopups();
+    }
+  }
+
+  function handleCardAdd (cardData) {
+    const isSavedNews = card.find((i) => i.title === cardData.title);
+    const jwt = localStorage.getItem('jwt');
+    if (!isSavedNews) {
+      MainApi.addCard(cardData, jwt)
+      .then((res) => {
+        setCard([...card, res]);
+        getCards(jwt);
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+      return;
+    }
+    handleCardDelete(isSavedNews);
+  }
+
+  function handleCardDelete (cards) {
+    const jwt = localStorage.getItem('jwt');
+    MainApi.removeCard(cards._id, jwt)
+    .then((newCard) => {
+      if (newCard) {
+        const newCards = card.filter((c) => c._id === card._id ? !newCard : c);
+        setCard(newCards);
+        getCards(jwt);
+      }
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`)); 
+  }
+
   function handleRegister(email, password, name) {
+    setDisabled(true);
     MainApi.register(email, password, name)
     .then(() => {
       closeAllPopups();
       handleRegisterSuccessPopupClick();
     })
-    .catch((err) => console.log(`Ошибка: ${err}`));
+    .catch((err) => {
+      setAuthError(err.message);
+    })
+    .finally(() => setDisabled(false));
   }
 
   function handleLogin(email, password) {
+    setDisabled(true);
     MainApi.authorize(email, password)
     .then((res) => {
       if (res.token) {
@@ -100,12 +149,18 @@ function App() {
         .catch((err) => console.log(`Ошибка: ${err}`));
       }
     })
-    .catch((err) => console.log(`Ошибка: ${err}`));
+    .catch((err) => {
+      setAuthError(err.message);
+    })
+    .finally(() => setDisabled(false));
   }
 
   function handleSignOut() {
     setLoggedIn(false);
     localStorage.removeItem('jwt');
+    localStorage.removeItem('searchNews');
+    localStorage.removeItem('keyword');
+    setShowSearchNews(false);
     history.push('/');
   }
 
@@ -115,18 +170,26 @@ function App() {
 
   function handleSearchForm(value) {
     setLoading(true);
-    setShow(true);
+    setShowSearchNews(true);
     setCurrentRow(0);
+    setSearchKeyword(value);
+    localStorage.setItem('keyword', value);
     NewsApi.searchNews(value)
     .then((newsData) => {
       if (newsData.totalResults === 0) {
         setNoResult(true);
       } else {
         setNoResult(false);
-        setNews(newsData.articles)
+        setNews(newsData.articles);
+        localStorage.setItem('searchNews', JSON.stringify(newsData.articles));
       }
     })
-    .catch((err) => console.log(`Ошибка: ${err}`))
+    .catch((err) => {
+      if (err) {
+        console.log(`Ошибка: ${err}`)
+        setsearchError(true);
+      }
+    })
     .finally(() => setLoading(false));
   }
 
@@ -168,6 +231,7 @@ function App() {
     setRegisterSuccessPopupOpen(false);
     setMobileNavigationOpen(false);
     document.removeEventListener('keyup', memoizedOnKeyup);
+    setAuthError('');
   }
   
   return (
@@ -181,16 +245,16 @@ function App() {
           isRegister={isRegisterPopupOpen}
           isSuccess={isRegisterSuccessPopupOpen}
           loggedIn={loggedIn}
-          signOut={handleSignOut}
+          onSignOut={handleSignOut}
           onAuthClick={handleLoginPopupClick}
           onBurgerButtonClick={handleMobileNavigationClick}
         />
 
         <Switch>
-          <ProtectedRoute exact path="/saved-news"
+          <ProtectedRoute path="/saved-news"
             loggedIn={loggedIn}
             component={SavedNews}
-            show={show}
+            show={showSavedNews}
             card={card}
             isLoading={false}
             isNoResult={false}
@@ -201,7 +265,8 @@ function App() {
             <Main
               loggedIn={loggedIn}
               news={news}
-              show={show}
+              card={card}
+              show={showSearchNews}
               onSearchForm={handleSearchForm}
               onShowMore={handleShowMore}
               currentRow={currentRow}
@@ -209,7 +274,9 @@ function App() {
               isNoResult={isNoResult}
               onAddCard={handleCardAdd}
               onRemoveCard={handleCardDelete}
-              onAuthClick={handleLoginPopupClick}
+              onAuthClick={handleRegisterPopupClick}
+              searchKeyword={searchKeyword}
+              searchError={searchError}
             />
           </Route>
 
@@ -222,6 +289,8 @@ function App() {
           onClose={closeAllPopups}
           onChangePopup={handleChangePopup}
           onLogin={handleLogin}
+          authError={authError}
+          disabled={disabled}
         />
 
         <Register
@@ -229,6 +298,8 @@ function App() {
           onClose={closeAllPopups}
           onChangePopup={handleChangePopup}
           onRegister={handleRegister}
+          authError={authError}
+          disabled={disabled}
         />
 
         <RegisterSuccessPopup
@@ -241,7 +312,7 @@ function App() {
           isOpen={isMobileNavigationOpen}
           onClose={closeAllPopups}
           loggedIn={loggedIn}
-          signOut={handleSignOut}
+          onSignOut={handleSignOut}
           onAuthClick={handleLoginPopupClick}
         />
 

@@ -1,33 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Validation } from '../../utils/Validation';
 
 function SearchForm({ searchForm }) {
 
-    const [search, setSearch] = useState('');
+    const search = Validation();
 
-    function handleSearchInput(evt) {
-        setSearch(evt.target.value);
-    }
-
-    function submitForm(e) {
-        e.preventDefault();
-        searchForm(search);
-    }
+    function submitForm(evt) {
+        evt.preventDefault();
+        if (!search.value) {
+            search.setErrorMessage('Нужно ввести ключевое слово');
+            return;
+        }
+        searchForm(search.value);
+    };
 
     return (
+        <>
         <form 
             className="search-form"
             onSubmit={submitForm}
         >
+
             <input
-                className="search-form__input"
                 type="text" 
+                className="search-form__input"
+                id="search-form-input"
+                name="search"
                 placeholder='Введите тему новости'
-                required
-                value={search}
-                onChange={handleSearchInput}
+                value={search.value}
+                onChange={search.onChange}
             />
+            <span id="search-form-input-error" className="search-form__input_error">{search.errorMessage}</span>
+
             <button type="submit" className="search-form__search-button">Искать</button>
         </form>
+        </>
     );
 }
 

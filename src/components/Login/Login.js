@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import { Validation } from '../../utils/Validation';
 
 function Login (props) {
 
@@ -8,24 +9,15 @@ function Login (props) {
         onClose, 
         onChangePopup,
         onLogin,
+        authError,
+        disabled,
     } = props;
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    function handleEmailChange(evt) {
-        setEmail(evt.target.value);
-    }
-
-    function handlePasswordChange(evt) {
-        setPassword(evt.target.value);
-    }
+    const email = Validation();
+    const password = Validation();
 
     function submitForm() {
-        if (!email && !password) return;
-        onLogin(email, password);
-        setEmail('');
-        setPassword('');
+        onLogin(email.value, password.value);
     }
 
     return (
@@ -39,6 +31,8 @@ function Login (props) {
             onSubmit={submitForm}
             changeFormText='Зарегистрироваться'
             onChangePopup={onChangePopup}
+            isFormValid={email.isValid && password.isValid}
+            authError={authError}
         >
         
             <span className="popup-with-form__input_heading">Email</span>
@@ -51,10 +45,11 @@ function Login (props) {
             minLength="2"
             maxLength="30"
             required
-            value={email}
-            onChange={handleEmailChange}
+            disabled={disabled}
+            value={email.value}
+            onChange={email.onChange}
             />
-            <span id="login-email-input-error" className="popup-with-form__input_error"></span>
+            <span id="login-email-input-error" className="popup-with-form__input_error">{email.errorMessage}</span>
         
             <span className="popup-with-form__input_heading">Пароль</span>
             <input
@@ -66,10 +61,11 @@ function Login (props) {
             minLength="2"
             maxLength="30"
             required
-            value={password}
-            onChange={handlePasswordChange}
+            disabled={disabled}
+            value={password.value}
+            onChange={password.onChange}
             />
-            <span id="login-password-input-error" className="popup-with-form__input_error"></span>
+            <span id="login-password-input-error" className="popup-with-form__input_error">{password.errorMessage}</span>
         
         </PopupWithForm>
     )

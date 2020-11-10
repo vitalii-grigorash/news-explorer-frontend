@@ -8,7 +8,7 @@ import mobileButtonClose from '../../images/svg/mobile-button-close.svg';
 function Header(props) {
     const { 
         loggedIn, 
-        signOut, 
+        onSignOut, 
         onAuthClick, 
         onBurgerButtonClick,
         isMobileOpen,
@@ -32,7 +32,7 @@ function Header(props) {
             <Link to={'/'} className={headerLogo}>NewsExplorer</Link>
             <Navigation
                 loggedIn={loggedIn}
-                signOut={signOut}
+                onSignOut={onSignOut}
                 onAuthClick={onAuthClick}
             />
             <img 

@@ -4,7 +4,7 @@ import logoutIconWhite from '../../images/svg/logout-icon-white.svg';
 import logoutIconBlack from '../../images/svg/logout-icon-black.svg';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Navigation({ loggedIn, signOut, onAuthClick, isMobileOpen }) {
+function Navigation({ loggedIn, onSignOut, onAuthClick, isMobileOpen }) {
 
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -27,7 +27,7 @@ function Navigation({ loggedIn, signOut, onAuthClick, isMobileOpen }) {
                     <Link to={'/saved-news'} className={`${navigationLink} ${newsUnderlineActive}`}>Сохранённые статьи</Link>
                 </>
             )}
-            <div className={navigationAuthContainer} onClick={loggedIn ? signOut : onAuthClick}>
+            <div className={navigationAuthContainer} onClick={loggedIn ? onSignOut : onAuthClick}>
                 <p className={navigationLogoutButton}>{authButtonText}</p>
                 {loggedIn && (
                     <>

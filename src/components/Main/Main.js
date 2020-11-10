@@ -4,14 +4,14 @@ import SearchForm from '../SearchForm/SearchForm';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import About from '../About/About';
 import mainBackgroundImage from '../../images/main-background.jpg'
-// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Main(props) {
 
     const { 
         show, 
         onSearchForm, 
-        news, 
+        news,
+        card,
         onShowMore, 
         currentRow, 
         isLoading, 
@@ -20,16 +20,16 @@ function Main(props) {
         onAddCard,
         onRemoveCard,
         onAuthClick,
+        searchKeyword,
+        searchError,
     } = props;
 
     const { pathname } = useLocation();
     const mainBackground = `${pathname === '/' && `main__background`}`;
 
     const cardsPerRow = 3;
-
     const newsToRender = news.slice(0, (currentRow + 1) * cardsPerRow);
-
-    // const currentUser = React.useContext(CurrentUserContext);
+    const isMoreNews = newsToRender.length !== news.length;
 
     return (
 
@@ -49,6 +49,7 @@ function Main(props) {
                 isNewsCard={true}
                 isLoading={isLoading}
                 news={newsToRender}
+                cards={card}
                 show={show}
                 onShowMore={onShowMore}
                 isNoResult={isNoResult}
@@ -56,6 +57,9 @@ function Main(props) {
                 onAddCard={onAddCard}
                 onRemoveCard={onRemoveCard}
                 onAuthClick={onAuthClick}
+                searchKeyword={searchKeyword}
+                isMoreNews={isMoreNews}
+                searchError={searchError}
             />
 
             <About />

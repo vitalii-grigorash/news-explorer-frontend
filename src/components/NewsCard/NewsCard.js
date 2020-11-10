@@ -5,14 +5,16 @@ function NewsCard(props) {
 
     const { 
         newsCard, 
+        savedCard,
         loggedIn, 
         onAddCard, 
         onRemoveCard, 
         onAuthClick,
-        savedCard,
+        searchKeyword,
     } = props;
 
     const { pathname } = useLocation();
+    
     const infoText = `${pathname === '/' ? `Войдите, чтобы сохранять статьи` : `Убрать из сохранённых`}`;
 
     const options = {
@@ -26,19 +28,33 @@ function NewsCard(props) {
 
     function addCard () {
         onAddCard({
-            keyword: 'Природа',
+            keyword: searchKeyword,
             title: newsCard.title,
             text: newsCard.description,
             date: fullDate,
             source: newsCard.source.name,
             link: newsCard.url,
             image: newsCard.urlToImage,
-          });   
+        });   
+    }
+
+    const isSavedNews = (pathname === '/' && 
+        (savedCard &&
+            savedCard.find((i) => i.title === newsCard.title)
+        )
+    )
+
+    function handleDeleteClick () {
+        onRemoveCard(savedCard);   
     }
 
     return (
         <div className="news-card__container">
-            <img className="news-card__image" alt={pathname === '/' ? newsCard.title : savedCard.title} src={pathname === '/' ? newsCard.urlToImage : savedCard.image} />
+            <img 
+                className="news-card__image" 
+                alt={pathname === '/' ? newsCard.title : savedCard.title} 
+                src={pathname === '/' ? newsCard.urlToImage : savedCard.image}
+            />
             {pathname !== '/' && 
                 (
                     <div className="news-card__keyword-container">
@@ -48,15 +64,25 @@ function NewsCard(props) {
             }
             <div className={pathname === '/' ?
                 `news-card__button-container news-card__button-container_main` :
-                `news-card__button-container news-card__button-container_saved-news`}>
+                `news-card__button-container news-card__button-container_saved-news`}
+            >
                 <div className="news-card__button-info-container">
-                    {loggedIn && pathname === '/' ? '' : 
-                        <p className="news-card__button-info">{infoText}</p>
-                    }
+                    {loggedIn && pathname === '/' && isSavedNews ? 
+                        <p className="news-card__button-info">Убрать из сохранённых</p> :                            
+                        (loggedIn && pathname === '/' ? '' : (
+                            <p className="news-card__button-info">{infoText}</p>  
+                        )
+                    )}
                 </div>
                 <button 
-                    className={pathname === '/' ? `news-card__button news-card__button_add` : `news-card__button news-card__button_trash`}
-                    onClick={loggedIn ? (pathname === '/' ? addCard : onRemoveCard) : (onAuthClick)}
+                    className={loggedIn && pathname === '/' && isSavedNews ?
+                        `news-card__button news-card__button_saved` :
+                        (pathname === '/' ? 
+                            `news-card__button news-card__button_add` : 
+                            `news-card__button news-card__button_trash`
+                        )
+                    }
+                    onClick={loggedIn ? (pathname === '/' ? addCard : handleDeleteClick) : (onAuthClick)}
                 ></button>
             </div>
             <div className="news-card__info">

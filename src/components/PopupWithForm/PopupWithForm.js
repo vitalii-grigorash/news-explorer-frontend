@@ -12,6 +12,8 @@ function PopupWithForm(props) {
         changeFormText,
         onChangePopup,
         isSuccessPopup,
+        isFormValid,
+        authError,
     } = props;
 
     function handleSubmit(evt) {
@@ -48,10 +50,12 @@ function PopupWithForm(props) {
                         {!isSuccessPopup ?
                             (
                                 <>
-                                    <span className="popup-with-form__submit-button-error"></span>
+                                    <span className="popup-with-form__submit-button-error">{authError}</span>
                                     <button
                                         type='submit'
-                                        className="popup-with-form__submit-button"
+                                        className={isFormValid ? 
+                                            `popup-with-form__submit-button` : 
+                                            `popup-with-form__submit-button popup-with-form__submit-button_disabled`}
                                     >
                                         {submitButtonText}
                                     </button>

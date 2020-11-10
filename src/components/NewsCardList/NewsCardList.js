@@ -18,6 +18,9 @@ function NewsCardList(props) {
         onAuthClick,
         isNewsCard,
         cards,
+        searchKeyword,
+        isMoreNews,
+        searchError,
     } = props
 
     const { pathname } = useLocation();
@@ -29,7 +32,7 @@ function NewsCardList(props) {
                     <div className="news-card-list">
                         {isLoading ? <Preloader /> : 
                             <>
-                                { isNoResult ? <NoResult /> :
+                                { isNoResult || searchError ? <NoResult searchError={searchError} /> :
                                     <>
                                         {pathname === '/' && 
                                             (
@@ -47,6 +50,8 @@ function NewsCardList(props) {
                                                             onAddCard={onAddCard}
                                                             onRemoveCard={onRemoveCard}
                                                             onAuthClick={onAuthClick}
+                                                            searchKeyword={searchKeyword}
+                                                            savedCard={cards}
                                                         />
                                                     ))}
                                                 </>) : (
@@ -64,7 +69,7 @@ function NewsCardList(props) {
                                                 </>)
                                             }
                                         </div>
-                                        {pathname === '/' && 
+                                        {pathname === '/' && isMoreNews === true &&
                                             (
                                                 <button 
                                                     className="news-card-list__show-button" 
