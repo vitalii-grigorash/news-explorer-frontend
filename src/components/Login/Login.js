@@ -1,14 +1,23 @@
 import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import { Validation } from '../../utils/Validation';
 
-function LoginPopup (props) {
+function Login (props) {
 
-    const { isOpen, onClose, onChangePopup, signIn } = props;
+    const { 
+        isOpen, 
+        onClose, 
+        onChangePopup,
+        onLogin,
+        authError,
+        disabled,
+    } = props;
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        signIn();
-        onClose();
+    const email = Validation();
+    const password = Validation();
+
+    function submitForm() {
+        onLogin(email.value, password.value);
     }
 
     return (
@@ -19,9 +28,11 @@ function LoginPopup (props) {
             submitButtonText='Войти'
             isOpen={isOpen}
             onClose={onClose}
-            onSubmit={handleSubmit}
+            onSubmit={submitForm}
             changeFormText='Зарегистрироваться'
             onChangePopup={onChangePopup}
+            isFormValid={email.isValid && password.isValid}
+            authError={authError}
         >
         
             <span className="popup-with-form__input_heading">Email</span>
@@ -34,8 +45,11 @@ function LoginPopup (props) {
             minLength="2"
             maxLength="30"
             required
+            disabled={disabled}
+            value={email.value}
+            onChange={email.onChange}
             />
-            <span id="login-email-input-error" className="popup-with-form__input_error"></span>
+            <span id="login-email-input-error" className="popup-with-form__input_error">{email.errorMessage}</span>
         
             <span className="popup-with-form__input_heading">Пароль</span>
             <input
@@ -47,12 +61,15 @@ function LoginPopup (props) {
             minLength="2"
             maxLength="30"
             required
+            disabled={disabled}
+            value={password.value}
+            onChange={password.onChange}
             />
-            <span id="login-password-input-error" className="popup-with-form__input_error"></span>
+            <span id="login-password-input-error" className="popup-with-form__input_error">{password.errorMessage}</span>
         
         </PopupWithForm>
     )
 
 }
 
-export default LoginPopup;
+export default Login;

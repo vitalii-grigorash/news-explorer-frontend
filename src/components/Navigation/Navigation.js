@@ -2,11 +2,14 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoutIconWhite from '../../images/svg/logout-icon-white.svg';
 import logoutIconBlack from '../../images/svg/logout-icon-black.svg';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Navigation({ loggedIn, name, signOut, onAuthClick, isMobileOpen }) {
+function Navigation({ loggedIn, onSignOut, onAuthClick, isMobileOpen }) {
+
+    const currentUser = React.useContext(CurrentUserContext);
 
     const { pathname } = useLocation();
-    const authButtonText = `${loggedIn ? `${name}` : 'Авторизоваться'}`;
+    const authButtonText = `${loggedIn ? `${currentUser.name}` : 'Авторизоваться'}`;
     const logoutIconChange = `${pathname === '/' ? logoutIconWhite : logoutIconBlack}`;
     const logoutIcon = `${isMobileOpen ? logoutIconWhite : logoutIconChange}`;
     const mainUnderlineActive = `${pathname === '/' && `navigation__link_active-white`}`;
@@ -24,7 +27,7 @@ function Navigation({ loggedIn, name, signOut, onAuthClick, isMobileOpen }) {
                     <Link to={'/saved-news'} className={`${navigationLink} ${newsUnderlineActive}`}>Сохранённые статьи</Link>
                 </>
             )}
-            <div className={navigationAuthContainer} onClick={loggedIn ? signOut : onAuthClick}>
+            <div className={navigationAuthContainer} onClick={loggedIn ? onSignOut : onAuthClick}>
                 <p className={navigationLogoutButton}>{authButtonText}</p>
                 {loggedIn && (
                     <>

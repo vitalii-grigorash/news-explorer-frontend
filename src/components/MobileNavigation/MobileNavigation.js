@@ -7,8 +7,7 @@ function MobileNavigation(props) {
     const {
         isOpen,
         loggedIn, 
-        name, 
-        signOut, 
+        onSignOut, 
         onAuthClick,
         onClose,
     } = props;
@@ -24,9 +23,8 @@ function MobileNavigation(props) {
                 />
 
                 <Navigation 
-                    name={name}
                     loggedIn={loggedIn}
-                    signOut={signOut}
+                    onSignOut={onSignOut}
                     onAuthClick={onAuthClick}
                     isMobileOpen={isOpen}
                 />

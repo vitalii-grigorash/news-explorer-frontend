@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import { Validation } from '../../utils/Validation';
 
-function RegisterPopup(props) {
+function Register(props) {
 
     const { 
         isOpen, 
         onClose, 
         onChangePopup, 
-        onUpdateUserName,
-        onRegisterSuccessPopup, 
-        } = props;
+        onRegister,
+        authError,
+        disabled,
+    } = props;
 
-    const [name, setName] = useState('');
+    const email = Validation();
+    const password = Validation();
+    const name = Validation();
 
-    function handleNameChange(evt) {
-        setName(evt.target.value);
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        onUpdateUserName(name);
-        onClose();
-        onRegisterSuccessPopup();
+    function submitForm() {
+        onRegister(email.value, password.value, name.value);
     }
 
     return (
@@ -32,10 +29,13 @@ function RegisterPopup(props) {
             submitButtonText='Зарегистрироваться'
             isOpen={isOpen}
             onClose={onClose}
-            onSubmit={handleSubmit}
+            onSubmit={submitForm}
             changeFormText='Войти'
             onChangePopup={onChangePopup}
+            isFormValid={email.isValid && password.isValid && name.isValid}
+            authError={authError}
         >
+
             <span className="popup-with-form__input_heading">Email</span>
             <input
                 type="email"
@@ -46,8 +46,11 @@ function RegisterPopup(props) {
                 minLength="2"
                 maxLength="30"
                 required
+                disabled={disabled}
+                value={email.value}
+                onChange={email.onChange}
             />
-            <span id="register-email-input-error" className="popup-with-form__input_error"></span>
+            <span id="register-email-input-error" className="popup-with-form__input_error">{email.errorMessage}</span>
 
             <span className="popup-with-form__input_heading">Пароль</span>
             <input
@@ -56,11 +59,14 @@ function RegisterPopup(props) {
                 id="register-password-input"
                 name="password"
                 placeholder='Введите пароль'
-                minLength="2"
+                minLength="8"
                 maxLength="30"
                 required
+                disabled={disabled}
+                value={password.value}
+                onChange={password.onChange}
             />
-            <span id="register-password-input-error" className="popup-with-form__input_error"></span>
+            <span id="register-password-input-error" className="popup-with-form__input_error">{password.errorMessage}</span>
 
             <span className="popup-with-form__input_heading">Имя</span>
             <input
@@ -73,12 +79,14 @@ function RegisterPopup(props) {
                 maxLength="40"
                 pattern="[A-Za-zа-яёА-ЯЁ -]{1,}"
                 required
-                onChange={handleNameChange}
+                disabled={disabled}
+                value={name.value}
+                onChange={name.onChange}
             />
-            <span id="register-name-input-error" className="popup-with-form__input_error"></span>
+            <span id="register-name-input-error" className="popup-with-form__input_error">{name.errorMessage}</span>
 
         </PopupWithForm>
     )
 }
 
-export default RegisterPopup;
+export default Register;

@@ -2,15 +2,32 @@ import React from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader'
 import NewsCardList from '../NewsCardList/NewsCardList';
 
-function SavedNews({ show, name }) {
+function SavedNews(props) {
+
+    const { 
+        show,
+        card,
+        isLoading,
+        isNoResult,
+        loggedIn,
+        onRemoveCard,
+    } = props;
 
     return (
         <>
             <SavedNewsHeader
-                name={name}
+                card={card}
+                loggedIn={loggedIn}
             />
+            
             <NewsCardList
+                isNewsCard={false}
                 show={show}
+                cards={card}
+                isLoading={isLoading}
+                isNoResult={isNoResult}
+                loggedIn={loggedIn}
+                onRemoveCard={onRemoveCard}
             />
         </> 
     );
