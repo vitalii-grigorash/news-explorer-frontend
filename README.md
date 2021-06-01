@@ -1,4 +1,4 @@
-# NewsExplorer. Frontend
+# NewsExplorer. Frontend.
 
 Сервис для поиска новостей.
 
